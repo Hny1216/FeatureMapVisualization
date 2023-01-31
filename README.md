@@ -5,13 +5,14 @@ This class provides a way to visualize the feature maps of deep learning network
 ----------------------------
 How to use the FeatureMapVisualization class:
 Initialization flattens the network structure and stores the layers sequentially in a list.
- >> import FeatureMapVisualization as Fmv
 
- >> model = models.alexnet(pretrained=True)
+    >> import FeatureMapVisualization as Fmv
 
- >> modelLayer = list(model.children())
+    >> model = models.alexnet(pretrained=True)
 
- >> modelVisualization = Fmv.FeatureMapVisualization(modelLayer)
+    >> modelLayer = list(model.children())
+
+    >> modelVisualization = Fmv.FeatureMapVisualization(modelLayer)
 
 ----------------------------
 Provides functions and methods:
