@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # -*- Created by Hny on 2023.01.30 -*-
+__Author__ = {"author":"Hny","email":"632678809@qq.com"}
 ############################################
-# FeatureMapVisualization:深度学习网络特征图可视化
-#
+# FeatureMapVisualization: 深度学习网络特征图可视化
+# Import method: import FeatureMapVisualization as Fmv
 ############################################
 """
 FeatureMapVisualization
@@ -50,6 +51,10 @@ plt.rcParams['font.sans-serif'] = ['STSong']
 
 class FeatureMapVisualization:
     def __init__(self,model:list,isShow=True):
+        self.maxItem = 0
+        if ~(type(model) == list):
+            self._callBack("2")
+            return
         self.modelLayer = []
         self._flat(model)
         self.maxItem = len(self.modelLayer)
@@ -64,7 +69,7 @@ class FeatureMapVisualization:
         except:
             self.modelLayer.append(Nested_lists)
 
-    def showStructure(self): # It can be expanded into the following layers
+    def showStructure(self):
         print("The model can be flattened to the following layers: ")
         for i in range(len(self.modelLayer)):
             print("[layer-%d]>>"%i,self.modelLayer[i])
@@ -123,7 +128,8 @@ class FeatureMapVisualization:
         for index in range(1, featureMapNum + 1):
             plt.subplot(row_Num, row_Num, index)
             # plt.imshow(featureMap[index - 1], cmap='gray')  # feature_map[0].shape=torch.Size([55, 55])
-            plt.imshow(transforms.ToPILImage()(featureMap[index - 1]))
+            # plt.imshow(transforms.ToPILImage()(featureMap[index - 1]))
+            plt.imshow(featureMap[index - 1])
             plt.axis('off')
             plt.imsave('featureMap//layer-'+str(k)+"//featureMap-" + str(index) + ".png", featureMap[index - 1])
         # plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=0.45)
@@ -137,7 +143,8 @@ class FeatureMapVisualization:
 
     def _callBack(self,type:str):
         callBackTips = {
-            "1":'"Error":The number of layers "k" does not match the number of layers of the model([0,%d]).'%(self.maxItem-1)
+            "1":'"Error":The number of layers "k" does not match the number of layers of the model([0,%d]).'%(self.maxItem-1),
+            "2":'"Error":The data type of the input model must be a list.'
         }
         print("\n\033[31m{}\033[0m".format(callBackTips[type]))
 
