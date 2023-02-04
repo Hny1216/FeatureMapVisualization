@@ -1,6 +1,6 @@
 # **FeatureMapVisualization**
 
-The same class, Feature, is available in both python and matlab versions. This class provides a way to visualize the feature maps of deep learning networks.
+The same class, FeatureMapVisualization, is available in both python and matlab versions. This class provides a way to visualize the feature maps of deep learning networks.
 
 More details (introduction of parameters, etc.) are described in the class documentation.
 
